@@ -1,0 +1,42 @@
+===================
+ GLOBAL PAGES DATA 
+===================
+
+   Global #Clicks  Global #Impressions  Global #Landing Pages  Global #Queries  Global Avg. Position  Global CTR(%)
+0           63144               593943                   4488             4488              3.044519             10
+
+===================
+ DATA PER LANGUAGE 
+===================
+
+          CTR(%)  Clicks  Impressions  Avg. Position  #Landing Pages
+Language                                                            
+en            10   11642       107717       3.020450            1022
+es             9   26552       280896       3.220674            1364
+fr             9   14475       156238       3.020085             473
+
+==========
+ HEAT MAP 
+==========
+
+[ Impression Heat Map ]
+
+Language                 de     en      es      fr    it   nl   pl     pt   sv
+url_form                                                                      
+Andorra                   0      0       2       0     0    0    0      0    0
+Argentina               588    560    6522     709   221   18   45  12288    2
+Australia                 4     37       0       0     4    0    1      0    0
+Austria                 262     20      55       0    12    0    0    123    0
+Bahrain                   0     19       0       0     0    0    0      0    0
+Belarus                   7      4       0       0     0    0    2      0    0
+Belgium                   3      2       3      12     1    1    0      6    0
+Bolivia                   0      0       0       1     0    0    0      1    0
+Brazil                 1728   7806   37282    1472   133   27    6  10079   24
+Bulgaria                  2      4       0       0     0    0    0      0    0
+Canada                  315  76131     761  142428    86   18   12    546    0
+Chile                   124     14    1996      18     0    3    0   2173    0
+Colombia                  1     24     171       2     0    2    0      1    0
+CzechRepublic             1     21      25       0     6    1   17    326    0
+Denmark                   0      6       0       4     0    0    0      0    2
+
+

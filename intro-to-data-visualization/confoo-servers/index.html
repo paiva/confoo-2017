@@ -1,0 +1,53 @@
+<html>
+<meta charset="UTF-8">
+    <head>
+        <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+        <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAockUjq3p_sFam9P0seYyo3SR_4A78ivM" async="" defer="defer"></script>
+        <script type="text/javascript">
+
+        // Load the Visualization API and the piechart package.
+        google.charts.load('current', {'packages': ['geochart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+          var jsonData = $.ajax({
+              url: "getData.php",
+              dataType: "json",
+              async: false
+              }).responseText;
+
+        // Create our data table out of JSON data loaded from server.
+        var data = new google.visualization.DataTable(jsonData);
+
+        var options = {
+            displayMode: 'markers',
+            colorAxis: {colors: ['red', 'green']}
+        };
+
+        // Instantiate and draw our chart, passing in some options.
+        var container = document.getElementById('chart_div');
+        var chart = new google.visualization.GeoChart(container);
+        chart.draw(data, options);
+
+        }
+        </script>
+        <title>Confoo Servers</title>
+  </head>
+  <body>
+    <div class="panel panel-default">
+      <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+              <p class="navbar-text">Confoo Servers</p>
+          </div>
+      </nav>
+          <div id="chart_div" ></div>
+    </div>
+  </body>
+</html>

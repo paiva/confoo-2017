@@ -1,0 +1,89 @@
+<html>
+<meta charset="UTF-8">
+    <head>
+        <link rel='stylesheet' type='text/css' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'>
+        <script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+        <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+        <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+        <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyAockUjq3p_sFam9P0seYyo3SR_4A78ivM" async="" defer="defer"></script>
+        <script type="text/javascript" src="https://fb.me/react-0.12.2.min.js"></script>
+      	<script type="text/javascript" src="https://fb.me/JSXTransformer-0.12.2.js"></script>
+        <title>Confoo Servers with React</title>
+    </head>
+  <body>
+    <div class="panel panel-default">
+      <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+              <p class="navbar-text">Confoo Servers (React version)</p>
+          </div>
+          <div id="chart_div" ></div>
+      </nav>
+
+      <script type="text/jsx">
+
+      // Load the Visualization API and the geochart package.
+      google.charts.load('current', {'packages': ['geochart']});
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      var Chart = React.createClass({
+            displayName:"Chart",
+            getInitialState: function() {
+            return {
+              data: this.getData()
+            };
+          },
+          render: function() {
+            return React.DOM.div({
+              id: this.props.graphName
+            });
+          },
+          componentDidMount: function() {
+
+            // Instantiate and draw our chart, passing in some options.
+            var container = document.getElementById(this.props.graphName);
+            var chart = new google.visualization.GeoChart(container);
+            this.setState({
+              chart: chart
+            });
+
+            this.draw();
+            this.interval = setInterval(this.update, 10000);
+          },
+          update: function(){
+            this.setState({
+              data : this.getData()
+            });
+            this.draw();
+          },
+          draw: function(){
+            // Create our data table out of JSON data loaded from server.
+            var data = this.state.data;
+            var options = {
+                displayMode: 'markers',
+                colorAxis: {colors: ['red', 'green']}
+            };
+
+            this.state.chart.draw(data, options);
+          },
+          getData: function(){
+            var jsonData;
+            $.ajax({
+                url: "getData.php",
+                dataType: "json",
+                async: false
+              }).done(function(data){
+                jsonData = data;
+                console.log(data);
+              });
+            return new google.visualization.DataTable(jsonData);
+          }});
+
+          function drawChart() {
+              React.render(React.createElement(Chart,{ graphName : "chart" }), document.getElementById('chart_div'));
+          }
+      </script>
+    </div>
+  </body>
+</html>
